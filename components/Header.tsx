@@ -6,7 +6,7 @@ import { FormEvent, useRef } from "react";
 const Header = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSearch = (e: FormEvent<HTMLFormElement>) => {
+  const handleSearch = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const input = inputRef.current?.value;
@@ -17,7 +17,17 @@ const Header = () => {
     }
 
     try {
-      // call the API
+      const response = await fetch("/activateScraper", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          search: input,
+        }),
+      });
+
+      
     } catch (error) {
       // handle error
     }
