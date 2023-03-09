@@ -1,9 +1,11 @@
 "use client";
 
-import Results from "@/components/Results";
-import { db } from "@/firebase";
-import { doc } from "firebase/firestore";
+import { deleteDoc, doc } from "firebase/firestore";
 import { useDocument } from "react-firebase-hooks/firestore";
+import Spinner from "react-spinkit";
+import { db } from "@/firebase";
+import Results from "@/components/Results";
+import { useRouter } from "next/navigation";
 
 type Props = {
   params: {
@@ -29,6 +31,18 @@ const SearchPage = ({ params: { id } }: Props) => {
         <p className="text-indigo-600 animate-pulse text-center">
           Scraping results from Amazon...
         </p>
+
+        <Spinner
+          style={{
+            height: "100px",
+            width: "100px",
+          }}
+          name="cube-grid"
+          color="indigo"
+          fadeIn="none"
+        />
+
+        <DeleteButton id={id} />
       </div>
     );
 
@@ -47,12 +61,32 @@ const SearchPage = ({ params: { id } }: Props) => {
               `${snapshot.data()?.results?.length} results found`}
           </p>
         </div>
+
+        <DeleteButton id={id} />
       </div>
 
       {snapshot.data()?.results?.length > 0 && (
         <Results results={snapshot.data()?.results} />
       )}
     </div>
+  );
+};
+
+const DeleteButton = ({ id }: { id: string }) => {
+  const router = useRouter();
+
+  const handleDelete = async () => {
+    await deleteDoc(doc(db, "searches", id));
+    router.push("/");
+  };
+
+  return (
+    <button
+      onClick={handleDelete}
+      className="bg-indigo-600 text-white px-4 py-2 rounded-lg"
+    >
+      Delete Search
+    </button>
   );
 };
 

@@ -40,10 +40,10 @@ const Results = ({ results }: Props) => {
 
           <div className="flex flex-wrap gap-2 justify-end mt-5">
             {result.features.map(
-              (feature) =>
+              (feature, _i) =>
                 feature && (
                   <p
-                    key={feature}
+                    key={feature + _i}
                     className="text-xs bg-indigo-500 px-2 py-1 text-white rounded-md"
                   >
                     {feature}
