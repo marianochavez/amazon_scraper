@@ -1,5 +1,4 @@
 import { adminDb } from "@/firebaseAdmin";
-import * as admin from "firebase-admin";
 
 type Data = {
     collection_id: string;
@@ -27,7 +26,7 @@ export async function POST(request: Request) {
             search,
             start_eta,
             status: "pending",
-            updatedAt: admin.firestore.Timestamp.now(),
+            updatedAt: start_eta,
         })
 
         return new Response(JSON.stringify({ collection_id, start_eta }), {
@@ -37,7 +36,7 @@ export async function POST(request: Request) {
             }
         })
     } catch (error) {
-        console.error(error);
+        console.error("activateScraper ERROR:",error);
         return new Response(JSON.stringify(error), {
             status: 500,
             headers: {
