@@ -7,7 +7,7 @@ type Props = {
 
 const Results = ({ results }: Props) => {
   return (
-    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5 w-full">
+    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5 w-full overflow-y-auto pb-2 h-[calc(100%-90px)] md:h-[calc(100%-100px)]">
       {results.map((result) => (
         <Link
           key={result.url}
