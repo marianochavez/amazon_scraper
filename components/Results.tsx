@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 type Props = {
@@ -6,21 +7,25 @@ type Props = {
 
 const Results = ({ results }: Props) => {
   return (
-    <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-5 w-full">
+    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5 w-full">
       {results.map((result) => (
         <Link
-          key={result.title}
+          key={result.url}
           href={result.url}
-          className="flex flex-col space-x-4 w-full bg-white rounded-lg shadow-md p-5"
+          className="bg-white flex flex-col flex-wrap w-full max-w-[calc(100vw-140px)] rounded-lg shadow-md p-5 items-center"
         >
-          <img
-            srcSet={result.imageset}
-            alt={result.title}
-            className="object-contain w-full h-40 py-5"
-          />
+          <div className="h-32 md:h-40 overflow-hidden">
+            <Image
+              src={result.image}
+              alt={result.title}
+              className="object-contain h-32 md:h-40"
+              width={200}
+              height={200}
+            />
+          </div>
 
-          <div className="flex flex-col py-5 flex-1">
-            <p className="font-bold">{result.title}</p>
+          <div className="flex flex-col py-5 flex-1 w-full flex-wrap">
+            <p className="font-bold ">{result.title}</p>
             <p className="text-sm text-gray-500">
               {result.rating} {result.reviews} reviews
             </p>

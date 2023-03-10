@@ -18,8 +18,9 @@ const SearchPage = ({ params: { id } }: Props) => {
 
   if (loading)
     return (
-      <h1 className="text-center p-10 animate-pulse text-xl text-indigo-600/50">
-        Loading Results...
+      <h1 className="flex flex-col items-center p-10 animate-pulse text-xl gap-y-5">
+        Loading results...
+        <Spinner name="pacman" color="indigo" fadeIn="none" />
       </h1>
     );
 
@@ -48,15 +49,15 @@ const SearchPage = ({ params: { id } }: Props) => {
 
   return (
     <div className="py-5">
-      <div className="flex items-center justify-between mb-7">
+      <div className="flex items-center justify-between mb-7 gap-x-2">
         <div className="flex flex-col md:flex-row gap-x-4">
-          <h1 className="font-bold">
+          <h1 className="font-bold text-xs md:text-lg">
             Search results for{" "}
             <span className="text-indigo-600">
               &quot;{snapshot.data()?.search}&quot;
             </span>
           </h1>
-          <p className="text-gray-300">
+          <p className="text-gray-400 text-xs md:text-lg">
             {snapshot.data()?.results?.length > 0 &&
               `${snapshot.data()?.results?.length} results found`}
           </p>
@@ -83,7 +84,7 @@ const DeleteButton = ({ id }: { id: string }) => {
   return (
     <button
       onClick={handleDelete}
-      className="bg-indigo-600 text-white px-4 py-2 rounded-lg"
+      className="bg-indigo-600 text-white px-4 py-2 rounded-lg text-xs md:text-md"
     >
       Delete Search
     </button>

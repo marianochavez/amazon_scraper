@@ -56,10 +56,11 @@ const Header = () => {
           ref={inputRef}
           type="text"
           placeholder="Search..."
-          className="flex-1 outline-none bg-transparent text-indigo-400 placeholder:text-indigo-300"
+          className="flex-1 outline-none text-sm md:text-base bg-transparent text-indigo-400 placeholder:text-indigo-300"
         />
-        <button hidden>Search</button>
-        <MagnifyingGlassIcon className="h-6 w-6 text-indigo-300" />
+        <button aria-label="search">
+          <MagnifyingGlassIcon className=" h-6 w-6 text-indigo-300" />
+        </button>
       </form>
     </header>
   );

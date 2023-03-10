@@ -15,10 +15,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex bg-[#F7FBFF] h-screen">
+      <body className="flex bg-[#F7FBFF]">
         <ClientProvider>
           <Sidebar />
-          <main className="p-10 max-w-7xl w-full mx-auto overflow-y-auto">
+          <main className="py-10 px-2 md:px-10 max-w-7xl w-full mx-auto overflow-y-auto">
             <Header />
             {children}
           </main>

@@ -22,7 +22,7 @@ const SidebarRow = ({ doc }: Props) => {
   return (
     <li
       onClick={() => router.push(`/search/${doc.id}`)}
-      className={`flex justify-between p-4 cursor-pointer hover:bg-white hover:shadow-md rounded-lg ${
+      className={`flex justify-between items-center p-2 cursor-pointer hover:bg-white hover:shadow-md rounded-lg ${
         active && "bg-white shadow-md"
       }`}
     >
@@ -37,7 +37,7 @@ const SidebarRow = ({ doc }: Props) => {
         {doc.data().status === "pending" ? (
           <Spinner name="cube-grid" color="indigo" fadeIn="none" />
         ) : (
-          <CheckCircleIcon className="h-6 w-6 text-green-500" />
+          <CheckCircleIcon className="h-4 w-4 md:h-6 md:w-6 text-green-500" />
         )}
       </span>
     </li>
